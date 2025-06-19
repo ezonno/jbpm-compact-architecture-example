@@ -7,10 +7,10 @@ services:
       - vscode-extensions-insiders:/home/vscode/.vscode-server-insiders/extensions
       - maven-cache:/home/vscode/.m2
     environment:
-      - REGISTRY_PREFIX=${REGISTRY_PREFIX:-quay.io/kiegroup}
-      - PROJECT_VERSION=${PROJECT_VERSION:-1.0.0-SNAPSHOT}
-      - KOGITO_MANAGEMENT_CONSOLE_IMAGE=${KOGITO_MANAGEMENT_CONSOLE_IMAGE:-docker.io/apache/incubator-kie-kogito-management-console:10.0.0}
-      - KOGITO_TASK_CONSOLE_IMAGE=${KOGITO_TASK_CONSOLE_IMAGE:-docker.io/apache/incubator-kie-kogito-task-console:10.0.0}
+      - REGISTRY_PREFIX=quay.io/kiegroup
+      - PROJECT_VERSION=1.0.0-SNAPSHOT
+      - KOGITO_MANAGEMENT_CONSOLE_IMAGE=docker.io/apache/incubator-kie-kogito-management-console:10.0.0
+      - KOGITO_TASK_CONSOLE_IMAGE=docker.io/apache/incubator-kie-kogito-task-console:10.0.0
     command: /bin/sh -c "while sleep 1000; do :; done"
     cap_add:
       - SYS_PTRACE
