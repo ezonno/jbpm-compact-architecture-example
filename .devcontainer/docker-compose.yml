@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   devcontainer:
     image: mcr.microsoft.com/devcontainers/java:1-17-bullseye
@@ -11,11 +9,9 @@ services:
     environment:
       - REGISTRY_PREFIX=${REGISTRY_PREFIX:-quay.io/kiegroup}
       - PROJECT_VERSION=${PROJECT_VERSION:-1.0.0-SNAPSHOT}
-      - BROWSER_HOST=${BROWSER_HOST:-localhost}
       - KOGITO_MANAGEMENT_CONSOLE_IMAGE=${KOGITO_MANAGEMENT_CONSOLE_IMAGE:-docker.io/apache/incubator-kie-kogito-management-console:10.0.0}
       - KOGITO_TASK_CONSOLE_IMAGE=${KOGITO_TASK_CONSOLE_IMAGE:-docker.io/apache/incubator-kie-kogito-task-console:10.0.0}
     command: /bin/sh -c "while sleep 1000; do :; done"
-    network_mode: host
     cap_add:
       - SYS_PTRACE
     security_opt:

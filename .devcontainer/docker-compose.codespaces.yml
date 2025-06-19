@@ -1,0 +1,18 @@
+# Override configuration for GitHub Codespaces
+services:
+  management-console:
+    environment:
+      RUNTIME_TOOLS_MANAGEMENT_CONSOLE_DATA_INDEX_ENDPOINT: http://jbpm-compact-architecture-example-service:8080/graphql
+      RUNTIME_TOOLS_MANAGEMENT_CONSOLE_KOGITO_ENV_MODE: "PROD"
+      RUNTIME_TOOLS_MANAGEMENT_CONSOLE_KOGITO_APP_NAME: "management-console"
+      KOGITO_CONSOLES_KEYCLOAK_DISABLE_HEALTH_CHECK: "true"
+      KOGITO_CONSOLES_KEYCLOAK_REALM: kogito
+      KOGITO_CONSOLES_KEYCLOAK_CLIENT_ID: kogito-console-quarkus
+
+  task-console:
+    environment:
+      RUNTIME_TOOLS_TASK_CONSOLE_KOGITO_ENV_MODE: "PROD"
+      RUNTIME_TOOLS_TASK_CONSOLE_DATA_INDEX_ENDPOINT: http://jbpm-compact-architecture-example-service:8080/graphql
+      KOGITO_CONSOLES_KEYCLOAK_DISABLE_HEALTH_CHECK: "true"
+      KOGITO_CONSOLES_KEYCLOAK_REALM: kogito
+      KOGITO_CONSOLES_KEYCLOAK_CLIENT_ID: kogito-console-quarkus

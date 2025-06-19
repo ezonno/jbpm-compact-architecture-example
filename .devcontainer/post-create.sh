@@ -8,12 +8,12 @@ mvn dependency:go-offline -B
 
 # Make scripts executable
 chmod +x /workspace/docker-compose/startServices.sh
+chmod +x /workspace/.devcontainer/start-services.sh
+chmod +x /workspace/.devcontainer/stop-services.sh
+chmod +x /workspace/.devcontainer/update-urls.sh
 
 # Create Maven settings directory if it doesn't exist
 mkdir -p ~/.m2
-
-# Make update-urls.sh executable
-chmod +x /workspace/.devcontainer/update-urls.sh
 
 # Display helpful information
 echo ""
@@ -22,8 +22,8 @@ echo ""
 echo "📋 Quick start commands:"
 echo "  - Build project: mvn clean package"
 echo "  - Run in dev mode: mvn quarkus:dev"
-echo "  - Start services: cd docker-compose && ./startServices.sh"
+echo "  - Start all services: /workspace/.devcontainer/start-services.sh"
+echo "  - Or start services manually: cd docker-compose && ./startServices.sh"
 echo ""
-
-# Show appropriate URLs based on environment
-/workspace/.devcontainer/update-urls.sh
+echo "⚠️  Note: The additional services (PostgreSQL, Keycloak, etc.) are not started automatically."
+echo "    Run '/workspace/.devcontainer/start-services.sh' to start them when needed."
