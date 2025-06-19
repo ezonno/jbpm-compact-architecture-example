@@ -1,5 +1,8 @@
 #!/bin/bash
 
+echo "Installing java"
+sdk default java 17.0.9-ms
+
 echo "🚀 Setting up jBPM development environment..."
 
 # Install additional dependencies if needed
