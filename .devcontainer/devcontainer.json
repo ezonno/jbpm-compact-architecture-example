@@ -38,6 +38,12 @@
       }
     }
   },
+  "containerEnv": {
+    "REGISTRY_PREFIX": "quay.io/kiegroup",
+    "PROJECT_VERSION": "1.0.0-SNAPSHOT",
+    "KOGITO_MANAGEMENT_CONSOLE_IMAGE": "docker.io/apache/incubator-kie-kogito-management-console:10.0.0",
+    "KOGITO_TASK_CONSOLE_IMAGE": "docker.io/apache/incubator-kie-kogito-task-console:10.0.0"
+  },
   "forwardPorts": [
     8080,
     8280,
