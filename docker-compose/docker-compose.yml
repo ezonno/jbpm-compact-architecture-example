@@ -53,11 +53,9 @@ services:
       QUARKUS_DATASOURCE_USERNAME: kogito-user
       QUARKUS_DATASOURCE_PASSWORD: kogito-pass
       QUARKUS_DATASOURCE_DB_KIND: postgresql
-      KOGITO_JOBS_SERVICE_URL: http://${BROWSER_HOST}:8080
-      KOGITO_SERVICE_URL: http://${BROWSER_HOST}:8080
-      KOGITO_DATAINDEX_HTTP_URL: http://${BROWSER_HOST}:8080
-    extra_hosts:
-      - "${BROWSER_HOST}:host-gateway"
+      KOGITO_JOBS_SERVICE_URL: http://jbpm-compact-architecture-example-service:8080
+      KOGITO_SERVICE_URL: http://jbpm-compact-architecture-example-service:8080
+      KOGITO_DATAINDEX_HTTP_URL: http://jbpm-compact-architecture-example-service:8080
 
   keycloak:
     container_name: keycloak
@@ -98,14 +96,14 @@ services:
     volumes:
       - ./svg/:/home/kogito/data/svg/
     environment:
-      RUNTIME_TOOLS_MANAGEMENT_CONSOLE_DATA_INDEX_ENDPOINT: http://${BROWSER_HOST}:8080/graphql
+      RUNTIME_TOOLS_MANAGEMENT_CONSOLE_DATA_INDEX_ENDPOINT: http://jbpm-compact-architecture-example-service:8080/graphql
       RUNTIME_TOOLS_MANAGEMENT_CONSOLE_KOGITO_ENV_MODE: "PROD"
       RUNTIME_TOOLS_MANAGEMENT_CONSOLE_KOGITO_APP_NAME: "management-console"
       RUNTIME_TOOLS_MANAGEMENT_CONSOLE_KOGITO_APP_VERSION:
       KOGITO_CONSOLES_KEYCLOAK_DISABLE_HEALTH_CHECK: False
-      KOGITO_CONSOLES_KEYCLOAK_HEALTH_CHECK_URL: http://localhost:8480/auth/realms/kogito/.well-known/openid-configuration
+      KOGITO_CONSOLES_KEYCLOAK_HEALTH_CHECK_URL: http://keycloak:8080/auth/realms/kogito/.well-known/openid-configuration
       KOGITO_CONSOLES_KEYCLOAK_REALM: kogito
-      KOGITO_CONSOLES_KEYCLOAK_URL: http://localhost:8480/auth
+      KOGITO_CONSOLES_KEYCLOAK_URL: http://keycloak:8080/auth
       KOGITO_CONSOLES_KEYCLOAK_CLIENT_ID: kogito-console-quarkus
 
   task-console:
@@ -121,8 +119,8 @@ services:
         condition: service_healthy
     environment:
       RUNTIME_TOOLS_TASK_CONSOLE_KOGITO_ENV_MODE: "PROD"
-      RUNTIME_TOOLS_TASK_CONSOLE_DATA_INDEX_ENDPOINT: http://${BROWSER_HOST}:8080/graphql
-      KOGITO_CONSOLES_KEYCLOAK_HEALTH_CHECK_URL: http://localhost:8480/auth/realms/kogito/.well-known/openid-configuration
-      KOGITO_CONSOLES_KEYCLOAK_URL: http://localhost:8480/auth
+      RUNTIME_TOOLS_TASK_CONSOLE_DATA_INDEX_ENDPOINT: http://jbpm-compact-architecture-example-service:8080/graphql
+      KOGITO_CONSOLES_KEYCLOAK_HEALTH_CHECK_URL: http://keycloak:8080/auth/realms/kogito/.well-known/openid-configuration
+      KOGITO_CONSOLES_KEYCLOAK_URL: http://keycloak:8080/auth
       KOGITO_CONSOLES_KEYCLOAK_REALM: kogito
       KOGITO_CONSOLES_KEYCLOAK_CLIENT_ID: kogito-console-quarkus
