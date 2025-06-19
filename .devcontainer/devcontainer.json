@@ -1,0 +1,77 @@
+{
+  "name": "jBPM Compact Architecture Example",
+  "dockerComposeFile": [
+    "docker-compose.yml",
+    "../docker-compose/docker-compose.yml"
+  ],
+  "service": "devcontainer",
+  "workspaceFolder": "/workspace",
+  "features": {
+    "ghcr.io/devcontainers/features/java:1": {
+      "version": "17",
+      "jdkDistro": "open",
+      "installMaven": "true",
+      "mavenVersion": "3.9.6"
+    },
+    "ghcr.io/devcontainers/features/git:1": {},
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {
+      "version": "latest",
+      "dockerDashComposeVersion": "v2"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "vscjava.vscode-java-pack",
+        "redhat.java",
+        "vscjava.vscode-maven",
+        "vscjava.vscode-java-debug",
+        "vscjava.vscode-java-test",
+        "kogito.swf-vscode-extension",
+        "redhat.vscode-xml",
+        "redhat.vscode-yaml"
+      ],
+      "settings": {
+        "java.configuration.updateBuildConfiguration": "automatic",
+        "java.server.launchMode": "Standard",
+        "maven.executable.path": "/usr/local/sdkman/candidates/maven/current/bin/mvn"
+      }
+    }
+  },
+  "forwardPorts": [
+    8080,
+    8280,
+    8380,
+    8480,
+    8055,
+    5432
+  ],
+  "portsAttributes": {
+    "8080": {
+      "label": "jBPM Service",
+      "onAutoForward": "notify"
+    },
+    "8280": {
+      "label": "Management Console",
+      "onAutoForward": "notify"
+    },
+    "8380": {
+      "label": "Task Console",
+      "onAutoForward": "notify"
+    },
+    "8480": {
+      "label": "Keycloak",
+      "onAutoForward": "notify"
+    },
+    "8055": {
+      "label": "pgAdmin",
+      "onAutoForward": "notify"
+    },
+    "5432": {
+      "label": "PostgreSQL",
+      "onAutoForward": "silent"
+    }
+  },
+  "postCreateCommand": "/bin/bash .devcontainer/post-create.sh",
+  "remoteUser": "vscode"
+}
